@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class Driver {
+public class DWCDriver {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(new File("input.txt"));
         HashMap<String, Integer> map = new HashMap<>();
@@ -22,28 +22,8 @@ public class Driver {
             }
         }
 
-        int numOfDistinctWords = map.size();
-
-        int[] top = new int[7];
-        for (int i = 0; i < top.length; i++) {
-            Iterator<Map.Entry<String, Integer>> iterator = map.entrySet().iterator();
-            Map.Entry best = null;
-            while (iterator.hasNext()) {
-                Map.Entry next = iterator.next();
-                if ((Integer)next.getValue() > top[i]) {
-                    top[i] = (Integer) next.getValue();
-                    best = next;
-                }
-            }
-            map.remove(best.getKey(), best.getValue());
-        }
-        int sum = 0;
-        for (int i : top)
-            sum+=i;
-        double avg = sum/(top.length + 0.0);
-
-        double wvc = numOfDistinctWords/avg;
-        System.out.println(wvc);
+        int dwc = map.size();
+        System.out.println(dwc);
     }
     private static String removePunct(String in, String[] punctuation) {
         for (String s : punctuation) {
