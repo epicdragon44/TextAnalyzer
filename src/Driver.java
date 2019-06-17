@@ -7,7 +7,6 @@ import java.util.StringTokenizer;
 public class Driver {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(new File("input.txt"));
-        String name = sc.nextLine();
         HashMap<String, Integer> map = new HashMap<>();
 
         String[] punctuation = {".", ",", "'", "\"", "(", ")", "!", "&", "$", "@", "#", "*", "%", "+", "-", "?", ">", "<"};
@@ -16,7 +15,7 @@ public class Driver {
             String line = sc.nextLine();
             StringTokenizer st = new StringTokenizer(line);
             while (st.hasMoreTokens()) {
-                String token = st.nextToken();
+                String token = st.nextToken().toLowerCase();
                 token = removePunct(token, punctuation);
                 if (map.containsKey(token)) {
                     Integer i = map.get(token);
@@ -24,7 +23,6 @@ public class Driver {
                 } else map.put(token, 1);
             }
         }
-        System.out.println(name);
         System.out.println(map.size());
     }
     private static String removePunct(String in, String[] punctuation) {
